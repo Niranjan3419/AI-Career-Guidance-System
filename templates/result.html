@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Result - AI Career Guidance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">AI Career Guide</div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/questionnaire">Assessment</a>
+        <a href="/download_report">Download Report</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="result-page">
+
+    <h2>🤖 Smart AI Career Analysis Complete</h2>
+    <p class="result-subtitle">Top 3 personalized career recommendations for {{ name }}</p>
+
+    <div class="main-result-card">
+        <h3>🏆 Best Career Match</h3>
+        <h1>{{ result.career }}</h1>
+
+        <div class="score-circle">
+            {{ result.score }}%
+        </div>
+
+        <p class="score-label">Compatibility Score</p>
+        <p class="career-desc">{{ result.description }}</p>
+    </div>
+
+    <div class="result-section">
+        <h3>🥇 Top 3 Career Matches</h3>
+
+        {% for career in top_careers %}
+        <div class="career-rank-card">
+            <div>
+                <h3>{{ loop.index }}. {{ career.career }}</h3>
+                <p>{{ career.demand }} Demand | {{ career.salary }}</p>
+            </div>
+
+            <div class="rank-score">
+                {{ career.score }}%
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="result-section">
+        <h3>🧠 Why AI Recommended This</h3>
+        <div class="reason-box">
+            {% for reason in reasons %}
+            <p>✔ {{ reason }}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="result-grid">
+        <div class="info-card">
+            <h3>💰 Salary Range</h3>
+            <p>{{ result.salary }}</p>
+        </div>
+
+        <div class="info-card">
+            <h3>📈 Job Demand</h3>
+            <p>{{ result.demand }}</p>
+        </div>
+
+        <div class="info-card">
+            <h3>🎓 Recommended Course</h3>
+            <p>{{ result.course }}</p>
+        </div>
+    </div>
+
+    <div class="result-section">
+        <h3>🧠 Recommended Skills</h3>
+        <div class="tag-box">
+            {% for skill in result.skills %}
+            <span>{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="result-section">
+        <h3>📚 Recommended Certifications</h3>
+        <div class="tag-box">
+            {% for cert in result.certifications %}
+            <span>{{ cert }}</span>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="result-section">
+        <h3>🛣️ Career Roadmap</h3>
+        <div class="roadmap">
+            {% for step in result.roadmap %}
+            <div class="roadmap-step">
+                <div class="step-number">{{ loop.index }}</div>
+                <p>{{ step }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="result-actions">
+        <a href="/download_report" class="btn primary">Download Career Report</a>
+        <a href="/questionnaire" class="btn primary">Retake Assessment</a>
+        <a href="/dashboard" class="btn dark-btn">Go to Dashboard</a>
+    </div>
+
+</div>
+
+</body>
+</html>

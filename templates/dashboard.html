@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - AI Career Guidance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">AI Career Guide</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/questionnaire">Assessment</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<section class="pro-dashboard">
+
+    <div class="dashboard-header">
+        <div>
+            <h1>Welcome, {{ name }} 👋</h1>
+            <p>Your personalized AI career guidance dashboard</p>
+        </div>
+        <a href="/questionnaire" class="btn primary">Start New Assessment</a>
+    </div>
+
+    <div class="dashboard-cards">
+
+        <div class="dash-card">
+            <h3>📊 Total Assessments</h3>
+            <h2>{{ total_assessments }}</h2>
+            <p>Career tests completed</p>
+        </div>
+
+        <div class="dash-card">
+            <h3>🎯 Last Career Match</h3>
+            <h2>{{ last_career }}</h2>
+            <p>Most recent AI recommendation</p>
+        </div>
+
+        <div class="dash-card">
+            <h3>📈 Compatibility Score</h3>
+            <h2>{{ last_score }}%</h2>
+            <p>Your latest match score</p>
+        </div>
+
+    </div>
+
+    <div class="dashboard-main">
+
+        <div class="activity-box">
+            <h3>🕒 Recent Assessment History</h3>
+
+            {% if recent_results %}
+                {% for item in recent_results %}
+                <div class="activity-item">
+                    <span>{{ item[0] }}</span>
+                    <strong>{{ item[1] }}%</strong>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No assessments taken yet. Start your first career assessment.</p>
+            {% endif %}
+        </div>
+
+        <div class="guide-box">
+            <h3>🤖 AI Guidance</h3>
+            <p>
+                Complete your career assessment to receive AI-based career suggestions,
+                skill recommendations, salary range, certifications, and a career roadmap.
+            </p>
+
+            <ul>
+                <li>Identify your best career path</li>
+                <li>Understand your strongest skills</li>
+                <li>Get a step-by-step roadmap</li>
+                <li>Prepare for internships and placements</li>
+            </ul>
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

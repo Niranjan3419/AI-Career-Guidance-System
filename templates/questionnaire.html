@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Career Assessment - AI Career Guidance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">AI Career Guide</div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="assessment-container">
+    <h2>Career Assessment</h2>
+    <p>Answer these questions to get your AI-based career recommendation.</p>
+
+    <form method="POST">
+
+        <label>1. Which area are you most interested in?</label>
+        <select name="interest" required>
+            <option value="">Select Interest</option>
+            <option>Programming</option>
+            <option>Designing</option>
+            <option>Business</option>
+            <option>Teaching</option>
+            <option>Electronics</option>
+        </select>
+
+        <label>2. Which skill are you strongest in?</label>
+        <select name="skill" required>
+            <option value="">Select Skill</option>
+            <option>Python</option>
+            <option>Java</option>
+            <option>Communication</option>
+            <option>Creativity</option>
+            <option>Leadership</option>
+        </select>
+
+        <label>3. What type of work do you prefer?</label>
+        <select name="work_style" required>
+            <option value="">Select Work Style</option>
+            <option>Problem Solving</option>
+            <option>Creative Work</option>
+            <option>Team Management</option>
+            <option>Research</option>
+            <option>Helping Others</option>
+        </select>
+
+        <label>4. What is your career goal?</label>
+        <select name="goal" required>
+            <option value="">Select Goal</option>
+            <option>Private Job</option>
+            <option>Government Job</option>
+            <option>Startup</option>
+            <option>Higher Studies</option>
+        </select>
+
+        <label>5. Choose your personality type</label>
+        <select name="personality" required>
+            <option value="">Select Personality</option>
+            <option>Analytical</option>
+            <option>Creative</option>
+            <option>Leader</option>
+            <option>Supportive</option>
+            <option>Research-Oriented</option>
+        </select>
+
+        <button type="submit">Get Recommendation</button>
+    </form>
+</div>
+
+</body>
+</html>

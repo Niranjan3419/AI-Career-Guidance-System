@@ -19,6 +19,24 @@ def init_db():
     """)
 
     cursor.execute("""
+        CREATE TABLE IF NOT EXISTS profiles (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER UNIQUE,
+            mobile TEXT,
+            dob TEXT,
+            gender TEXT,
+            education TEXT,
+            college TEXT,
+            department TEXT,
+            year TEXT,
+            cgpa TEXT,
+            state TEXT,
+            preferred_location TEXT,
+            linkedin TEXT
+        )
+    """)
+
+    cursor.execute("""
         CREATE TABLE IF NOT EXISTS assessments (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
@@ -29,6 +47,16 @@ def init_db():
             work_style TEXT,
             goal TEXT,
             personality TEXT
+        )
+    """)
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS login_details (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            name TEXT,
+            email TEXT,
+            login_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     """)
 
@@ -194,6 +222,16 @@ def home():
     return render_template("index.html")
 
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
@@ -208,12 +246,15 @@ def register():
         try:
             conn = sqlite3.connect("database.db")
             cursor = conn.cursor()
+
             cursor.execute(
                 "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
                 (name, email, password)
             )
+
             conn.commit()
             conn.close()
+
             return redirect("/login")
 
         except sqlite3.IntegrityError:
@@ -230,21 +271,140 @@ def login():
 
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
+
         cursor.execute(
             "SELECT * FROM users WHERE email = ? AND password = ?",
             (email, password)
         )
+
         user = cursor.fetchone()
-        conn.close()
 
         if user:
+            cursor.execute(
+                "INSERT INTO login_details (user_id, name, email) VALUES (?, ?, ?)",
+                (user[0], user[1], user[2])
+            )
+
+            conn.commit()
+
             session["user_id"] = user[0]
             session["user_name"] = user[1]
-            return redirect("/dashboard")
-        else:
-            return "Invalid email or password"
+
+            cursor.execute("SELECT * FROM profiles WHERE user_id = ?", (user[0],))
+            profile = cursor.fetchone()
+            conn.close()
+
+            if profile:
+                return redirect("/dashboard")
+            else:
+                return redirect("/complete_profile")
+
+        conn.close()
+        return "Invalid email or password"
 
     return render_template("login.html")
+
+
+@app.route("/complete_profile", methods=["GET", "POST"])
+def complete_profile():
+    if "user_id" not in session:
+        return redirect("/login")
+
+    if request.method == "POST":
+        mobile = request.form["mobile"]
+        dob = request.form["dob"]
+        gender = request.form["gender"]
+        education = request.form["education"]
+        college = request.form["college"]
+        department = request.form["department"]
+        year = request.form["year"]
+        cgpa = request.form["cgpa"]
+        state = request.form["state"]
+        preferred_location = request.form["preferred_location"]
+        linkedin = request.form["linkedin"]
+
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT OR REPLACE INTO profiles
+            (user_id, mobile, dob, gender, education, college, department, year, cgpa, state, preferred_location, linkedin)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            session["user_id"],
+            mobile,
+            dob,
+            gender,
+            education,
+            college,
+            department,
+            year,
+            cgpa,
+            state,
+            preferred_location,
+            linkedin
+        ))
+
+        conn.commit()
+        conn.close()
+
+        return redirect("/dashboard")
+
+    return render_template("complete_profile.html", name=session["user_name"])
+
+
+@app.route("/edit_profile", methods=["GET", "POST"])
+def edit_profile():
+    if "user_id" not in session:
+        return redirect("/login")
+
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM profiles WHERE user_id = ?", (session["user_id"],))
+    profile = cursor.fetchone()
+    conn.close()
+
+    if request.method == "POST":
+        mobile = request.form["mobile"]
+        dob = request.form["dob"]
+        gender = request.form["gender"]
+        education = request.form["education"]
+        college = request.form["college"]
+        department = request.form["department"]
+        year = request.form["year"]
+        cgpa = request.form["cgpa"]
+        state = request.form["state"]
+        preferred_location = request.form["preferred_location"]
+        linkedin = request.form["linkedin"]
+
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+
+        cursor.execute("""
+            INSERT OR REPLACE INTO profiles
+            (user_id, mobile, dob, gender, education, college, department, year, cgpa, state, preferred_location, linkedin)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        """, (
+            session["user_id"],
+            mobile,
+            dob,
+            gender,
+            education,
+            college,
+            department,
+            year,
+            cgpa,
+            state,
+            preferred_location,
+            linkedin
+        ))
+
+        conn.commit()
+        conn.close()
+
+        return redirect("/dashboard")
+
+    return render_template("complete_profile.html", name=session["user_name"], profile=profile)
 
 
 @app.route("/dashboard")
@@ -255,7 +415,10 @@ def dashboard():
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
 
-    cursor.execute("SELECT COUNT(*) FROM assessments WHERE user_id = ?", (session["user_id"],))
+    cursor.execute(
+        "SELECT COUNT(*) FROM assessments WHERE user_id = ?",
+        (session["user_id"],)
+    )
     total_assessments = cursor.fetchone()[0]
 
     cursor.execute(
@@ -270,6 +433,12 @@ def dashboard():
     )
     recent_results = cursor.fetchall()
 
+    cursor.execute(
+        "SELECT mobile, college, department, year, cgpa, state FROM profiles WHERE user_id = ?",
+        (session["user_id"],)
+    )
+    profile = cursor.fetchone()
+
     conn.close()
 
     last_career = last_result[0] if last_result else "Not Taken Yet"
@@ -281,7 +450,8 @@ def dashboard():
         total_assessments=total_assessments,
         last_career=last_career,
         last_score=last_score,
-        recent_results=recent_results
+        recent_results=recent_results,
+        profile=profile
     )
 
 
@@ -303,6 +473,7 @@ def questionnaire():
 
         conn = sqlite3.connect("database.db")
         cursor = conn.cursor()
+
         cursor.execute("""
             INSERT INTO assessments 
             (user_id, career, score, interest, skill, work_style, goal, personality)
@@ -317,6 +488,7 @@ def questionnaire():
             goal,
             personality
         ))
+
         conn.commit()
         conn.close()
 

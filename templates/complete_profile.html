@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Profile - AI Career Guidance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">AI Career Guide</div>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="assessment-container">
+    <h2>Complete Your Profile</h2>
+    <p>Hello {{ name }}, please complete your account details.</p>
+
+    <form method="POST">
+        <label>Mobile Number</label>
+        <input type="text" name="mobile" required>
+
+        <label>Date of Birth</label>
+        <input type="date" name="dob" required>
+
+        <label>Gender</label>
+        <select name="gender" required>
+            <option value="">Select Gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Other</option>
+        </select>
+
+        <label>Education Level</label>
+        <input type="text" name="education" placeholder="B.E / B.Tech" required>
+
+        <label>College Name</label>
+        <input type="text" name="college" required>
+
+        <label>Department</label>
+        <input type="text" name="department" required>
+
+        <label>Year of Study</label>
+        <input type="text" name="year" placeholder="1st Year / 2nd Year" required>
+
+        <label>CGPA</label>
+        <input type="text" name="cgpa">
+
+        <label>State</label>
+        <input type="text" name="state" required>
+
+        <label>Preferred Work Location</label>
+        <input type="text" name="preferred_location" required>
+
+        <label>LinkedIn Profile</label>
+        <input type="text" name="linkedin">
+
+        <button type="submit">Save Profile</button>
+    </form>
+</div>
+
+</body>
+</html>

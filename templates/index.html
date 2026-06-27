@@ -4,59 +4,210 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Career Guidance System</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
+<!-- ================= NAVBAR ================= -->
+
 <nav class="navbar">
-    <div class="logo">AI Career Guide</div>
+
+    <div class="logo-container">
+
+        <div class="logo">
+            AI Career Guide
+        </div>
+
+        <div class="mini-project-ticker">
+            <span>
+                ◆ MINI PROJECT 2026 ◆ COMPUTER AND COMMUNICATION ENGINEERING DEPARTMENT ◆ V.S.B ENGINEERING COLLEGE, KARUR ◆ AI CAREER GUIDANCE SYSTEM ◆
+            </span>
+        </div>
+
+    </div>
+
     <div class="nav-links">
+
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="#features">Features</a>
         <a href="/contact">Contact</a>
         <a href="/login">Login</a>
         <a href="/register">Register</a>
+
     </div>
+
 </nav>
 
-<section class="hero">
+<!-- ================= HERO ================= -->
+
+<section class="hero animated-hero">
+
     <div class="hero-content">
+
         <h1>AI Career Guidance System</h1>
-        <p>Discover the best career path based on your skills, interests, and goals using AI-based recommendations.</p>
+
+        <p>
+            Discover your perfect career path using Artificial Intelligence,
+            personalized assessments, and career roadmap recommendations.
+        </p>
+
+        <!-- Career Slider -->
+
+        <div class="career-slider">
+
+            <div class="career-slide active">
+
+                <div class="career-icon">👨‍💻</div>
+
+                <h2>Software Engineer</h2>
+
+                <p>
+                    Build modern websites, mobile apps and enterprise software.
+                </p>
+
+            </div>
+
+            <div class="career-slide">
+
+                <div class="career-icon">🤖</div>
+
+                <h2>AI Engineer</h2>
+
+                <p>
+                    Create intelligent systems using Machine Learning and AI.
+                </p>
+
+            </div>
+
+            <div class="career-slide">
+
+                <div class="career-icon">📊</div>
+
+                <h2>Data Analyst</h2>
+
+                <p>
+                    Analyze data and help organizations make better decisions.
+                </p>
+
+            </div>
+
+            <div class="career-slide">
+
+                <div class="career-icon">👨‍🏫</div>
+
+                <h2>Teacher</h2>
+
+                <p>
+                    Inspire future generations through education and innovation.
+                </p>
+
+            </div>
+
+            <div class="career-slide">
+
+                <div class="career-icon">🎨</div>
+
+                <h2>UI / UX Designer</h2>
+
+                <p>
+                    Design beautiful digital experiences for users.
+                </p>
+
+            </div>
+
+        </div>
+
+        <!-- Slider Dots -->
+
+        <div class="career-dots">
+
+            <span class="career-dot active"></span>
+            <span class="career-dot"></span>
+            <span class="career-dot"></span>
+            <span class="career-dot"></span>
+            <span class="career-dot"></span>
+
+        </div>
+
+        <!-- Buttons -->
 
         <div class="buttons">
-            <a href="/register" class="btn primary">Get Started</a>
-            <a href="/about" class="btn secondary">Learn More</a>
+
+            <a href="/register" class="btn primary">
+                Get Started
+            </a>
+
+            <a href="/about" class="btn secondary">
+                Learn More
+            </a>
+
         </div>
+
     </div>
+
 </section>
+
+<!-- ================= FEATURES ================= -->
 
 <section class="features" id="features">
+
     <div class="card">
+
         <h3>🤖 AI Recommendation</h3>
-        <p>Get top career suggestions based on your skills, interests, and personality.</p>
+
+        <p>
+            AI suggests the best career based on your interests,
+            skills and personality.
+        </p>
+
     </div>
 
     <div class="card">
+
         <h3>📊 Skill Assessment</h3>
-        <p>Analyze your strengths and match them with suitable career fields.</p>
+
+        <p>
+            Analyze your strengths and identify suitable career opportunities.
+        </p>
+
     </div>
 
     <div class="card">
+
         <h3>🎯 Career Roadmap</h3>
-        <p>Receive step-by-step guidance to reach your selected career goal.</p>
+
+        <p>
+            Get a personalized roadmap to achieve your dream career.
+        </p>
+
     </div>
 
     <div class="card">
+
         <h3>📄 Career Report</h3>
-        <p>Download your personalized career guidance report after assessment.</p>
+
+        <p>
+            Download your complete AI-generated career guidance report.
+        </p>
+
     </div>
+
 </section>
 
+<!-- ================= FOOTER ================= -->
+
 <footer>
-    <p>© 2026 AI Career Guidance System | Developed by Niranjan</p>
+
+    <p>
+        © 2026 AI Career Guidance System | Developed by Niranjan
+    </p>
+
 </footer>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
 
 </body>
 </html>

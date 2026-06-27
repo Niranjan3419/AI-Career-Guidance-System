@@ -6,18 +6,46 @@
 </head>
 <body>
 
-<div class="form-container">
-    <h2>Login</h2>
+<nav class="navbar">
+    <div class="logo">AI Career Guide</div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/register">Register</a>
+    </div>
+</nav>
 
-    <form method="POST">
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="password" name="password" placeholder="Password" required>
+<section class="auth-page">
+    <div class="floating-icons">
+        <span>👨‍💻</span>
+        <span>🤖</span>
+        <span>📊</span>
+        <span>🎨</span>
+        <span>👨‍🏫</span>
+    </div>
 
-        <button type="submit">Login</button>
-    </form>
+    <div class="auth-card">
+        <div class="auth-left">
+            <h1>Welcome Back!</h1>
+            <p>Continue your journey to discover the perfect career path with AI.</p>
+            <div class="auth-badge">🚀 Your future starts here</div>
+        </div>
 
-    <p>Don't have an account? <a href="/register">Register</a></p>
-</div>
+        <div class="auth-right">
+            <h2>Login</h2>
+
+            <form method="POST">
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="password" name="password" placeholder="Password" required>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <p>Don't have an account? <a href="/register">Register</a></p>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>

@@ -14,64 +14,129 @@
     </div>
 </nav>
 
-<div class="assessment-container">
-    <h2>Career Assessment</h2>
-    <p>Answer these questions to get your AI-based career recommendation.</p>
-
-    <form method="POST">
-
-        <label>1. Which area are you most interested in?</label>
-        <select name="interest" required>
-            <option value="">Select Interest</option>
-            <option>Programming</option>
-            <option>Designing</option>
-            <option>Business</option>
-            <option>Teaching</option>
-            <option>Electronics</option>
-        </select>
-
-        <label>2. Which skill are you strongest in?</label>
-        <select name="skill" required>
-            <option value="">Select Skill</option>
-            <option>Python</option>
-            <option>Java</option>
-            <option>Communication</option>
-            <option>Creativity</option>
-            <option>Leadership</option>
-        </select>
-
-        <label>3. What type of work do you prefer?</label>
-        <select name="work_style" required>
-            <option value="">Select Work Style</option>
-            <option>Problem Solving</option>
-            <option>Creative Work</option>
-            <option>Team Management</option>
-            <option>Research</option>
-            <option>Helping Others</option>
-        </select>
-
-        <label>4. What is your career goal?</label>
-        <select name="goal" required>
-            <option value="">Select Goal</option>
-            <option>Private Job</option>
-            <option>Government Job</option>
-            <option>Startup</option>
-            <option>Higher Studies</option>
-        </select>
-
-        <label>5. Choose your personality type</label>
-        <select name="personality" required>
-            <option value="">Select Personality</option>
-            <option>Analytical</option>
-            <option>Creative</option>
-            <option>Leader</option>
-            <option>Supportive</option>
-            <option>Research-Oriented</option>
-        </select>
-
-        <button type="submit">Get Recommendation</button>
-    </form>
+<section class="questionnaire-page">
+    <div class="bg-icons">
+    <span>👨‍💻</span>
+    <span>🤖</span>
+    <span>📊</span>
+    <span>🎨</span>
+    <span>👨‍🏫</span>
 </div>
+
+    <div class="questionnaire-header">
+        <h1>AI Career Assessment</h1>
+        <p>Answer these questions to get your personalized career recommendation.</p>
+    </div>
+
+    <div class="assessment-container modern-assessment">
+
+        <form method="POST">
+
+            <label>1. Which area are you most interested in?</label>
+            <select name="interest" required>
+                <option value="">Select Interest</option>
+                <option>Programming</option>
+                <option>Designing</option>
+                <option>Business</option>
+                <option>Teaching</option>
+                <option>Electronics</option>
+            </select>
+
+            <label>2. Which skill are you strongest in?</label>
+            <select name="skill" required>
+                <option value="">Select Skill</option>
+                <option>Python</option>
+                <option>Java</option>
+                <option>Communication</option>
+                <option>Creativity</option>
+                <option>Leadership</option>
+            </select>
+
+            <label>3. What type of work do you prefer?</label>
+            <select name="work_style" required>
+                <option value="">Select Work Style</option>
+                <option>Problem Solving</option>
+                <option>Creative Work</option>
+                <option>Team Management</option>
+                <option>Research</option>
+                <option>Helping Others</option>
+            </select>
+
+            <label>4. What is your career goal?</label>
+            <select name="goal" required>
+                <option value="">Select Goal</option>
+                <option>Private Job</option>
+                <option>Government Job</option>
+                <option>Startup</option>
+                <option>Higher Studies</option>
+            </select>
+
+            <label>5. Choose your personality type</label>
+            <select name="personality" required>
+                <option value="">Select Personality</option>
+                <option>Analytical</option>
+                <option>Creative</option>
+                <option>Leader</option>
+                <option>Supportive</option>
+                <option>Research-Oriented</option>
+            </select>
+
+            <label>6. Which subject do you like most?</label>
+            <select name="subject">
+                <option value="">Select Subject</option>
+                <option>Computer Science</option>
+                <option>Mathematics</option>
+                <option>Business Studies</option>
+                <option>Electronics</option>
+                <option>English / Communication</option>
+            </select>
+
+            <label>7. Which working environment do you prefer?</label>
+            <select name="environment">
+                <option value="">Select Environment</option>
+                <option>Office</option>
+                <option>Remote Work</option>
+                <option>Laboratory</option>
+                <option>Classroom</option>
+                <option>Startup Environment</option>
+            </select>
+
+            <label>8. How do you solve problems?</label>
+            <select name="problem_solving">
+                <option value="">Select Method</option>
+                <option>Logical Thinking</option>
+                <option>Creative Ideas</option>
+                <option>Team Discussion</option>
+                <option>Research and Analysis</option>
+                <option>Practical Experiment</option>
+            </select>
+
+            <label>9. What motivates you most?</label>
+            <select name="motivation">
+                <option value="">Select Motivation</option>
+                <option>High Salary</option>
+                <option>Helping People</option>
+                <option>Innovation</option>
+                <option>Job Security</option>
+                <option>Starting Own Business</option>
+            </select>
+
+            <label>10. Which skill do you want to improve?</label>
+            <select name="improve_skill">
+                <option value="">Select Skill</option>
+                <option>Coding</option>
+                <option>Communication</option>
+                <option>Designing</option>
+                <option>Leadership</option>
+                <option>Data Analysis</option>
+            </select>
+
+            <button type="submit">Analyze My Career Path</button>
+
+        </form>
+    </div>
+
+</section>
 
 </body>
 </html>

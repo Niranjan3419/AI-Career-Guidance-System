@@ -1941,3 +1941,247 @@ footer {
         transform:translateY(0px);
     }
 }
+/* =========================================
+   AI CAREER LOADING PAGE
+========================================= */
+
+.ai-loading-page {
+    position: relative;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 45px 20px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 15% 20%,
+            rgba(143, 148, 251, 0.22),
+            transparent 32%),
+        radial-gradient(circle at 85% 80%,
+            rgba(78, 84, 200, 0.20),
+            transparent 35%),
+        linear-gradient(135deg, #eef2ff, #ffffff);
+}
+
+.ai-loading-card {
+    position: relative;
+    z-index: 2;
+    width: 620px;
+    max-width: 95%;
+    padding: 42px;
+    text-align: center;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(78, 84, 200, 0.16);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 25px 65px rgba(30, 27, 75, 0.22);
+    animation: loadingCardEnter 0.8s ease;
+}
+
+.ai-brain {
+    width: 105px;
+    height: 105px;
+    margin: 0 auto 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 58px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4e54c8, #8f94fb);
+    box-shadow:
+        0 0 0 12px rgba(78, 84, 200, 0.08),
+        0 0 35px rgba(78, 84, 200, 0.35);
+    animation: brainPulse 1.5s ease-in-out infinite;
+}
+
+.ai-status {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 7px 14px;
+    border-radius: 20px;
+    background: #eef2ff;
+    color: #4e54c8;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.ai-loading-card h1 {
+    color: #27245c;
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+#loading-message {
+    min-height: 27px;
+    color: #666;
+    font-size: 17px;
+    transition: 0.25s ease;
+}
+
+#loading-message.message-change {
+    opacity: 0;
+    transform: translateY(8px);
+}
+
+.progress-container {
+    width: 100%;
+    height: 15px;
+    margin-top: 28px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #e6e8fa;
+    box-shadow: inset 0 2px 5px rgba(30, 27, 75, 0.10);
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(
+        90deg,
+        #4e54c8,
+        #8f94fb,
+        #60efff,
+        #4e54c8
+    );
+    background-size: 250% 100%;
+    box-shadow: 0 0 18px rgba(78, 84, 200, 0.45);
+    animation: loadingGradient 2s linear infinite;
+    transition: width 0.12s linear;
+}
+
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    color: #60637a;
+    font-size: 14px;
+}
+
+.progress-details strong {
+    color: #4e54c8;
+}
+
+.analysis-list {
+    margin-top: 28px;
+    padding: 20px;
+    text-align: left;
+    border-radius: 18px;
+    background: #f7f8ff;
+}
+
+.analysis-list div {
+    margin: 12px 0;
+    padding: 10px 12px;
+    color: #666;
+    border-radius: 10px;
+    transition: 0.35s ease;
+}
+
+.analysis-list .step-complete {
+    color: #25845a;
+    font-weight: 700;
+    background: #eafaf1;
+    transform: translateX(5px);
+}
+
+.loading-note {
+    margin-top: 22px;
+    color: #83859a;
+    font-size: 13px;
+}
+
+.loading-background-icons span {
+    position: absolute;
+    z-index: 1;
+    font-size: 48px;
+    opacity: 0.10;
+    animation: loadingIconFloat 6s ease-in-out infinite;
+}
+
+.loading-background-icons span:nth-child(1) {
+    top: 12%;
+    left: 7%;
+}
+
+.loading-background-icons span:nth-child(2) {
+    top: 15%;
+    right: 8%;
+    animation-delay: 1.5s;
+}
+
+.loading-background-icons span:nth-child(3) {
+    bottom: 12%;
+    left: 9%;
+    animation-delay: 3s;
+}
+
+.loading-background-icons span:nth-child(4) {
+    right: 8%;
+    bottom: 14%;
+    animation-delay: 4.5s;
+}
+
+@keyframes loadingCardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(45px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes brainPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+        box-shadow:
+            0 0 0 18px rgba(78, 84, 200, 0.04),
+            0 0 45px rgba(78, 84, 200, 0.48);
+    }
+}
+
+@keyframes loadingGradient {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 250% 0;
+    }
+}
+
+@keyframes loadingIconFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-25px) rotate(7deg);
+    }
+}
+
+@media (max-width: 650px) {
+    .ai-loading-card {
+        padding: 30px 22px;
+    }
+
+    .ai-loading-card h1 {
+        font-size: 25px;
+    }
+
+    .ai-brain {
+        width: 88px;
+        height: 88px;
+        font-size: 48px;
+    }
+}

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Analysis - Career Guidance</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="logo">AI Career Guide</div>
+
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<section class="ai-loading-page">
+
+    <div class="loading-background-icons">
+        <span>🤖</span>
+        <span>💻</span>
+        <span>📊</span>
+        <span>🎯</span>
+    </div>
+
+    <div class="ai-loading-card">
+
+        <div class="ai-brain">
+            🧠
+        </div>
+
+        <div class="ai-status">
+            AI ENGINE ACTIVE
+        </div>
+
+        <h1>Analyzing Your Career Profile</h1>
+
+        <p id="loading-message">
+            Reading your interests and skills...
+        </p>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div class="progress-details">
+            <span>AI Career Analysis</span>
+            <strong id="progress-number">0%</strong>
+        </div>
+
+        <div class="analysis-list">
+            <div id="step-1">⏳ Analyzing interests</div>
+            <div id="step-2">⏳ Evaluating skills</div>
+            <div id="step-3">⏳ Understanding personality</div>
+            <div id="step-4">⏳ Matching career database</div>
+            <div id="step-5">⏳ Preparing recommendations</div>
+        </div>
+
+        <p class="loading-note">
+            Please wait while the system prepares your personalized result.
+        </p>
+
+    </div>
+
+</section>
+
+<script>
+    const messages = [
+        "Reading your interests and skills...",
+        "Evaluating your work preferences...",
+        "Understanding your personality...",
+        "Matching suitable career opportunities...",
+        "Calculating compatibility scores...",
+        "Preparing your final recommendation..."
+    ];
+
+    const steps = [
+        document.getElementById("step-1"),
+        document.getElementById("step-2"),
+        document.getElementById("step-3"),
+        document.getElementById("step-4"),
+        document.getElementById("step-5")
+    ];
+
+    const progressBar = document.getElementById("progress-bar");
+    const progressNumber = document.getElementById("progress-number");
+    const loadingMessage = document.getElementById("loading-message");
+
+    let progress = 0;
+    let messageIndex = 0;
+    let completedSteps = 0;
+
+    const progressTimer = setInterval(() => {
+        progress += 2;
+
+        if (progress > 100) {
+            progress = 100;
+        }
+
+        progressBar.style.width = progress + "%";
+        progressNumber.textContent = progress + "%";
+
+        if (progress % 18 === 0 && messageIndex < messages.length - 1) {
+            messageIndex++;
+            loadingMessage.classList.add("message-change");
+
+            setTimeout(() => {
+                loadingMessage.textContent = messages[messageIndex];
+                loadingMessage.classList.remove("message-change");
+            }, 200);
+        }
+
+        const requiredSteps = Math.min(
+            Math.floor(progress / 20),
+            steps.length
+        );
+
+        while (completedSteps < requiredSteps) {
+            steps[completedSteps].textContent =
+                "✅ " + steps[completedSteps].textContent.substring(2);
+
+            steps[completedSteps].classList.add("step-complete");
+            completedSteps++;
+        }
+
+        if (progress >= 100) {
+            clearInterval(progressTimer);
+
+            loadingMessage.textContent =
+                "Analysis complete! Opening your career results...";
+
+            setTimeout(() => {
+                window.location.href = "/result";
+            }, 500);
+        }
+
+    }, 110);
+</script>
+
+</body>
+</html>

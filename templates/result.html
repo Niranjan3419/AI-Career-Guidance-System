@@ -1,28 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Career Result - AI Career Guidance</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
 </head>
+
 <body>
 
 <nav class="navbar">
     <div class="logo">AI Career Guide</div>
+
     <div class="nav-links">
-        <a href="/dashboard">Dashboard</a>
-        <a href="/questionnaire">Assessment</a>
-        <a href="/download_report">Download Report</a>
-        <a href="/logout">Logout</a>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('questionnaire') }}">Assessment</a>
+        <a href="{{ url_for('download_report') }}">Download Report</a>
+        <a href="{{ url_for('logout') }}">Logout</a>
     </div>
 </nav>
 
-<div class="result-page">
+<main class="result-page">
 
     <h2>🤖 Smart AI Career Analysis Complete</h2>
-    <p class="result-subtitle">Top 3 personalized career recommendations for {{ name }}</p>
 
-    <div class="main-result-card">
+    <p class="result-subtitle">
+        Top 3 personalized career recommendations for {{ name }}
+    </p>
+
+    <section class="main-result-card">
         <h3>🏆 Best Career Match</h3>
+
         <h1>{{ result.career }}</h1>
 
         <div class="score-circle">
@@ -30,36 +43,56 @@
         </div>
 
         <p class="score-label">Compatibility Score</p>
-        <p class="career-desc">{{ result.description }}</p>
-    </div>
 
-    <div class="result-section">
+        <p class="career-desc">
+            {{ result.description }}
+        </p>
+    </section>
+
+    <section class="result-section">
         <h3>🥇 Top 3 Career Matches</h3>
 
         {% for career in top_careers %}
         <div class="career-rank-card">
+
             <div>
-                <h3>{{ loop.index }}. {{ career.career }}</h3>
-                <p>{{ career.demand }} Demand | {{ career.salary }}</p>
+                <h3>
+                    {{ loop.index }}. {{ career.career }}
+                </h3>
+
+                <p>
+                    {{ career.demand }} Demand |
+                    {{ career.salary }}
+                </p>
             </div>
 
             <div class="rank-score">
                 {{ career.score }}%
             </div>
-        </div>
-        {% endfor %}
-    </div>
 
-    <div class="result-section">
+        </div>
+        {% else %}
+        <p>No additional career recommendations available.</p>
+        {% endfor %}
+    </section>
+
+    <section class="result-section">
         <h3>🧠 Why AI Recommended This</h3>
+
         <div class="reason-box">
             {% for reason in reasons %}
             <p>✔ {{ reason }}</p>
+            {% else %}
+            <p>
+                This career matches your interests, skills,
+                personality and work preferences.
+            </p>
             {% endfor %}
         </div>
-    </div>
+    </section>
 
-    <div class="result-grid">
+    <section class="result-grid">
+
         <div class="info-card">
             <h3>💰 Salary Range</h3>
             <p>{{ result.salary }}</p>
@@ -74,45 +107,95 @@
             <h3>🎓 Recommended Course</h3>
             <p>{{ result.course }}</p>
         </div>
-    </div>
 
-    <div class="result-section">
+    </section>
+
+    <section class="result-section">
         <h3>🧠 Recommended Skills</h3>
+
         <div class="tag-box">
             {% for skill in result.skills %}
             <span>{{ skill }}</span>
+            {% else %}
+            <span>Problem Solving</span>
+            <span>Communication</span>
+            <span>Technical Knowledge</span>
             {% endfor %}
         </div>
-    </div>
+    </section>
 
-    <div class="result-section">
+    <section class="result-section">
         <h3>📚 Recommended Certifications</h3>
+
         <div class="tag-box">
             {% for cert in result.certifications %}
             <span>{{ cert }}</span>
+            {% else %}
+            <span>Industry Certification</span>
+            <span>Online Career Course</span>
             {% endfor %}
         </div>
-    </div>
+    </section>
 
-    <div class="result-section">
+    <section class="result-section">
         <h3>🛣️ Career Roadmap</h3>
+
         <div class="roadmap">
             {% for step in result.roadmap %}
             <div class="roadmap-step">
-                <div class="step-number">{{ loop.index }}</div>
+
+                <div class="step-number">
+                    {{ loop.index }}
+                </div>
+
                 <p>{{ step }}</p>
+
+            </div>
+            {% else %}
+            <div class="roadmap-step">
+                <div class="step-number">1</div>
+                <p>Learn the basic skills required for this career.</p>
+            </div>
+
+            <div class="roadmap-step">
+                <div class="step-number">2</div>
+                <p>Complete practical projects and certifications.</p>
+            </div>
+
+            <div class="roadmap-step">
+                <div class="step-number">3</div>
+                <p>Apply for internships and entry-level opportunities.</p>
             </div>
             {% endfor %}
         </div>
-    </div>
+    </section>
 
     <div class="result-actions">
-        <a href="/download_report" class="btn primary">Download Career Report</a>
-        <a href="/questionnaire" class="btn primary">Retake Assessment</a>
-        <a href="/dashboard" class="btn dark-btn">Go to Dashboard</a>
+
+        <a
+            href="{{ url_for('download_report') }}"
+            class="btn primary"
+        >
+            Download Career Report
+        </a>
+
+        <a
+            href="{{ url_for('questionnaire') }}"
+            class="btn primary"
+        >
+            Retake Assessment
+        </a>
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="btn dark-btn"
+        >
+            Go to Dashboard
+        </a>
+
     </div>
 
-</div>
+</main>
 
 </body>
 </html>

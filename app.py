@@ -537,7 +537,7 @@ def result():
 from flask import make_response, session, redirect, url_for
 
 
-@app.route("/download-report")
+@app.route("/download_report")
 def download_report():
     if "user_id" not in session:
         return redirect(url_for("login"))

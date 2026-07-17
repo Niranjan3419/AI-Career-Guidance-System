@@ -6,10 +6,8 @@
 
     <title>Career Result - AI Career Guidance</title>
 
-    <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='style.css') }}"
-    >
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -18,10 +16,10 @@
     <div class="logo">AI Career Guide</div>
 
     <div class="nav-links">
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
-        <a href="{{ url_for('questionnaire') }}">Assessment</a>
-        <a href="{{ url_for('download_report') }}">Download Report</a>
-        <a href="{{ url_for('logout') }}">Logout</a>
+        <a href="/dashboard">Dashboard</a>
+        <a href="/questionnaire">Assessment</a>
+        <a href="/download_report">Download Report</a>
+        <a href="/login">Logout</a>
     </div>
 </nav>
 
@@ -71,8 +69,6 @@
             </div>
 
         </div>
-        {% else %}
-        <p>No additional career recommendations available.</p>
         {% endfor %}
     </section>
 
@@ -82,11 +78,6 @@
         <div class="reason-box">
             {% for reason in reasons %}
             <p>✔ {{ reason }}</p>
-            {% else %}
-            <p>
-                This career matches your interests, skills,
-                personality and work preferences.
-            </p>
             {% endfor %}
         </div>
     </section>
@@ -116,10 +107,6 @@
         <div class="tag-box">
             {% for skill in result.skills %}
             <span>{{ skill }}</span>
-            {% else %}
-            <span>Problem Solving</span>
-            <span>Communication</span>
-            <span>Technical Knowledge</span>
             {% endfor %}
         </div>
     </section>
@@ -130,9 +117,6 @@
         <div class="tag-box">
             {% for cert in result.certifications %}
             <span>{{ cert }}</span>
-            {% else %}
-            <span>Industry Certification</span>
-            <span>Online Career Course</span>
             {% endfor %}
         </div>
     </section>
@@ -151,45 +135,24 @@
                 <p>{{ step }}</p>
 
             </div>
-            {% else %}
-            <div class="roadmap-step">
-                <div class="step-number">1</div>
-                <p>Learn the basic skills required for this career.</p>
-            </div>
-
-            <div class="roadmap-step">
-                <div class="step-number">2</div>
-                <p>Complete practical projects and certifications.</p>
-            </div>
-
-            <div class="roadmap-step">
-                <div class="step-number">3</div>
-                <p>Apply for internships and entry-level opportunities.</p>
-            </div>
             {% endfor %}
         </div>
     </section>
 
     <div class="result-actions">
 
-        <a
-            href="{{ url_for('download_report') }}"
-            class="btn primary"
-        >
+        <a href="/download_report"
+           class="btn primary">
             Download Career Report
         </a>
 
-        <a
-            href="{{ url_for('questionnaire') }}"
-            class="btn primary"
-        >
+        <a href="/questionnaire"
+           class="btn primary">
             Retake Assessment
         </a>
 
-        <a
-            href="{{ url_for('dashboard') }}"
-            class="btn dark-btn"
-        >
+        <a href="/dashboard"
+           class="btn dark-btn">
             Go to Dashboard
         </a>
 

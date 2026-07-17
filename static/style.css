@@ -2185,3 +2185,149 @@ footer {
         font-size: 48px;
     }
 }
+/* ==========================================================
+   RESPONSIVE / MOBILE-FRIENDLY FIXES
+   Everything above this line is untouched — original desktop
+   layout, colors, and animations are all preserved exactly.
+   These rules only adapt sizing/spacing for smaller screens,
+   and also patch a few places where a later fixed-width rule
+   in the file above had accidentally cancelled out an earlier
+   responsive @media rule (e.g. .career-theme-box, .navbar).
+   ========================================================== */
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Fluid headings: equal to the original size at desktop widths,
+   scale down smoothly on narrow screens instead of wrapping/overflowing */
+.hero h1            { font-size: clamp(28px, 6vw, 48px); }
+.hero p              { font-size: clamp(15px, 2.5vw, 20px); }
+.dashboard h1        { font-size: clamp(26px, 5vw, 42px); }
+.dashboard p         { font-size: clamp(15px, 2.2vw, 20px); }
+.main-result-card h1 { font-size: clamp(26px, 5vw, 42px); }
+.result-page h2      { font-size: clamp(24px, 4.5vw, 34px); }
+.page-card h1        { font-size: clamp(24px, 4.5vw, 36px); }
+.auth-left h1        { font-size: clamp(24px, 4.5vw, 38px); }
+.questionnaire-header h1 { font-size: clamp(26px, 5vw, 42px); }
+.ai-loading-card h1  { font-size: clamp(20px, 4vw, 32px); }
+.dashboard-header h1 { font-size: clamp(24px, 4.5vw, 36px); }
+
+/* Navbar: a later unconditional rule (padding: 18px 60px) was
+   overriding the original 600px mobile padding — restore it,
+   and extend graceful wrapping down to smaller phones too */
+@media (max-width: 600px) {
+    .navbar {
+        padding: 15px 20px;
+        flex-wrap: wrap;
+        row-gap: 12px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .navbar {
+        padding: 12px 15px;
+    }
+}
+
+/* LED ticker: keep it from forcing horizontal overflow on small phones */
+.mini-project-ticker {
+    max-width: 100%;
+}
+
+@media (max-width: 420px) {
+    .mini-project-ticker {
+        width: 220px;
+    }
+}
+
+/* Fixed-width form/assessment/result containers → fluid on tablets/phones */
+@media (max-width: 700px) {
+    .form-container,
+    .assessment-container,
+    .result-container {
+        width: 92%;
+        padding: 28px;
+    }
+}
+
+@media (max-width: 900px) {
+    .assessment-container,
+    .result-container {
+        width: 92%;
+    }
+}
+
+/* .career-theme-box was redefined twice further down the file with a
+   fixed 430px width, which silently cancelled its own 850px media
+   fix — restore responsiveness here without touching its gradient,
+   shadow, or animation */
+@media (max-width: 500px) {
+    .career-theme-box {
+        width: 90%;
+    }
+
+    .career-slider {
+        width: 92%;
+    }
+
+    #theme-title {
+        font-size: 24px;
+    }
+
+    #theme-text {
+        max-width: 100%;
+    }
+}
+
+/* Auth split card: stack padding tightened on very small phones
+   (column stacking itself already happens via the existing 850px rule) */
+@media (max-width: 480px) {
+    .auth-page {
+        padding: 25px 15px;
+    }
+
+    .auth-left,
+    .auth-right {
+        padding: 25px 20px;
+    }
+
+    .auth-left h1 {
+        font-size: 26px;
+    }
+}
+
+/* Career rank card: stack instead of squeezing the score badge
+   against the title/description on narrow screens */
+@media (max-width: 480px) {
+    .career-rank-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .dashboard-header {
+        padding: 25px 20px;
+    }
+}
+
+/* Relieve oversized section padding on small phones */
+@media (max-width: 480px) {
+    .hero,
+    .page-section,
+    .questionnaire-page,
+    .login-theme-page {
+        padding: 30px 16px;
+    }
+
+    .page-card {
+        padding: 25px 20px;
+    }
+}
